@@ -3,7 +3,8 @@ apiVersion: apps/v1
 metadata:
   name: my-java-springboot
 spec:
-  replicas: 1
+  terminationGracePeriodSeconds: 30
+  replicas: 5
   selector:
     matchLabels:
       app: java-springboot-app
@@ -25,11 +26,14 @@ spec:
               cpu: "10m"
           readinessProbe:
             httpGet:
-              path: /health
+              path: /
               port: 8081
-            initialDelaySeconds: 5
-            periodSeconds: 10
-            failureThreshold: 3
+              scheme: HTTP
+            initialDelaySeconds: 10
+            timeoutSeconds: 1
+            periodSeconds: 1
+            successThreshold: 1
+            failureThreshold: 10
 
 ---
 kind: Service
