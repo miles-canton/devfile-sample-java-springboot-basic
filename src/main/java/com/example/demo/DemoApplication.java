@@ -12,7 +12,7 @@ public class DemoApplication {
 
     @RequestMapping("/")
     String home() {
-        return "Hello World! 2025";
+        return "Hello World! 2026";
     }
 
     public static void main(String[] args) {
