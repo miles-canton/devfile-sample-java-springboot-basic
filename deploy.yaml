@@ -23,6 +23,14 @@ spec:
             requests:
               memory: "180Mi"
               cpu: "10m"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8081
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            failureThreshold: 3
+
 ---
 kind: Service
 apiVersion: v1
